@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "rockmoviehdbot",
+  "private_key_id": "4807701d4c50b1bfc578840982e19876a7c04906",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDVrPig6etrlW4Z\n5r/SeHbA2TGVNMHAG/bPnvAY+nQk2D3Cx8DrGv4NrYw/FCOwh1Ju/MkxCKJEHDsJ\n8wCMj/VkzUiGwazZRFRplJUEPBxsCGO+cOWjZysHA7Idk5B0NiHhJAXjYsX1Ys4s\nOxXqK9k2ZW6HGyJexYs42zC6j+QIWQhAZcfF4rs8Kfnk1cZqpVcJdZgB2lHrdAkp\nk2qbKC+5wUDeHI2YKd90eDlWJSHZ1t4R8nnsbiYRr5s5YvGi5d9XYyvzR1Xjo//4\n+hczjzPmP0StrRvYIZLiRiC2abC0NUqmjnnR6XmxMXfKWEDrdIBxZJUKlNQA9aIy\n1OXWyjgDAgMBAAECggEAGaiePfB+cS+uBiqOlq8Zj486pDCuzYDDfWttaIp2yk/f\nRsBm+wna6niQfVNP9SxNf/9ssi3XvSG+Dd6iORQ2bbw1p9z3rSrGj4Z58zARYlW1\nkz0KY7oJUYZ7lo/4SkQ6gvHTn9pmFtFJHHLx7uoEuO1VkvV1W00R1VTY6qZJxfNL\n+I1UH6q+ZP8jNf/pHhgl4wu9DxViVVkD1U3N7MTHBEwJvO1iKS6w/WFLxlgZy7Wh\n7GDevSyX4R7NwQ47MEILzA0yM01088edi7Qsv/TqrxrNP+EuIj6T1LhK+/tunv5i\nFBF8BaD8pp8hRzJ1N4lpQ56HADOzITv/0hLWZEPXMQKBgQD/9CWzbfsLvd4DiOTW\nnGls0Il4rb395vjSFUgzeo3WSL7T5LS71tPbHcCbJNI7aoDwEWEBJVO2f6a2jA3X\n8dr0nGYB10oLDgx/4rIvVRvsB9jpRWMZv7wOrexYnL2nZaMVUdY4tR1e8ld3YxaJ\n7cMjKlfrSpQJFyfIwpe3crhNsQKBgQDVtt26FesT0REB0j2jED5a8Nrmb2pY0aHT\nsocrkliHJ0vdZCFR83JdtIcfYjE47Kr6hSzWsZn4dSHG3lrCB+u0CkS3HOq0UxOj\nQzJXICo1wTHF1lfl0wrs4+sEqpDIyDbXkoHO6MskJJgRZ9AXxAkzLD3EfhIQ04c3\nNmm99gFJ8wKBgA80PI0VCmWfKLIDDrzk26pYFOJzR6bucndgRkKwk/5XoeZKXqYN\n09XfRZKxtD9NS013atC7m+ZqXMfZN/VM65m+NJ0FYeOYOQvbtoPzRU5XBP6OXZ2o\n8w3YLQLyhJ2N/wsEKnqB37XFJYb0/uDAm+fZ2xEiA/sqQfW+AW8nRGVxAoGALmP9\niXFMkAan3G9YtdbG0lLKEY9J1HHc4Ok18j1YPi5Hh40+tl1UDAct9aAI80RccPkL\nnKb8tzQl2tdVeBzkCzbXZ7A9Olt2PdBOUx9GSljfhwRaHCdNjdKDp4Wm3A6p6O2C\ng/mAbx4KbGzOfPouzQ7jcY20OjbQeSm0lmmaKgUCgYBkJTC/71LiYNVv5kTBtVns\nwPKmQqPTf2lN+dnh9HlA2PxRy8n3o/DDxgRREFwmK9SeAJms19/453ocNNAMlL/i\nLfAVtUneFdE7XV3NSj472y+rYX7fKwWHtuSXP75CEfa8F8UlEMQ69ERyGXdqwWey\nChWHAritGq1bLwRBInRipA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-fbsvc@rockmoviehdbot.iam.gserviceaccount.com",
+  "client_id": "109991042425633492270",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40rockmoviehdbot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
