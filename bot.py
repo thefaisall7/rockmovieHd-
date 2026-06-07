@@ -6,75 +6,66 @@ import firebase_admin
 from firebase_admin import credentials, db
 
 # --- FIREBASE DATABASE SETUP ---
-# Hamari downloaded json file ko read karega
-cred = credentials.Certificate('firebase-key.json')
+# Ab hum file read nahi karenge, direct environment variable se data uthayenge
+try:
+    firebase_key_raw = os.environ.get("FIREBASE_KEY_JSON")
+    if firebase_key_raw:
+        firebase_info = json.loads(firebase_key_raw)
+        cred = credentials.Certificate(firebase_info)
+    else:
+        # Agar variable nahi mila toh backup ke liye file try karega
+        cred = credentials.Certificate('firebase-key.json')
+except Exception as e:
+    print(f"Firebase key loading error: {e}")
+    cred = credentials.Certificate('firebase-key.json')
 
-# Yahan apne Firebase Database ka URL daalein
-# (Example: https://your-project-id-default-rtdb.firebaseio.com/)
-FIREBASE_DB_URL = os.environ.get("FIREBASE_DB_URL", "APNA_FIREBASE_URL_YAHAN_DALO")
+# Aapka asli Firebase Database URL
+FIREBASE_DB_URL = "https://rockmoviehdbot-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
 firebase_admin.initialize_app(cred, {
     'databaseURL': FIREBASE_DB_URL
 })
 
-# Reference to the movies node in Firebase
 movies_ref = db.reference('movies')
 
 # --- ADMIN CONFIGURATION ---
-# Apni asli Telegram User ID yahan daalein taaki sirf aap hi movie add kar sakein
-ADMIN_ID = int(os.environ.get("ADMIN_ID", 123456789)) 
-
+ADMIN_ID = 5126747940 
 
 # --- BOT COMMAND HANDLERS ---
-
-# /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "🎬 **Welcome to Rock Movie HD Bot!** 🚀\n\n"
         "Bhai, bas movie ka naam likh kar bhejo, mai aapko download link de dunga!"
     )
 
-# /add command (Sirf Admin ke liye - Movie add karne ke liye)
-# Usage: /add Pushpa 2 | https://teraboxlink.com
 async def add_movie(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    
     if user_id != ADMIN_ID:
         await update.message.reply_text("❌ Arre bhai, aap is bot ke admin nahi ho!")
         return
 
-    # Check input format
     if not context.args or "|" not in " ".join(context.args):
         await update.message.reply_text("❌ Sahi format use karo bhai!\nExample: `/add Pushpa 2 | https://link.com`")
         return
 
     full_text = " ".join(context.args)
     movie_name, movie_link = map(str.strip, full_text.split("|"))
-    
-    # Firebase me save karne ke liye name ko lowercase (chote aksharo) me convert karenge
-    movie_key = movie_name.lower().replace(".", "_").replace("$", "_").replace("#", "_") # Firebase keys restriction fix
+    movie_key = movie_name.lower().replace(".", "_").replace("$", "_").replace("#", "_")
     
     movies_ref.child(movie_key).set({
         "display_name": movie_name,
         "link": movie_link
     })
-    
     await update.message.reply_text(f"✅ **Done Bhai!**\n🎬 Movie: {movie_name}\n🔗 Link: {movie_link}\nDatabase me safe ho gayi hai!")
 
-# Movie Search Logic (Jab koi bhi text bhejega)
 async def search_movie(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.message.text.lower().strip()
-    
-    # Firebase key restrictions ke hisab se clean karo query ko
     movie_key = query.replace(".", "_").replace("$", "_").replace("#", "_")
-    
-    # Database me check karo
     movie_data = movies_ref.child(movie_key).get()
     
     if movie_data:
         name = movie_data.get("display_name")
         link = movie_data.get("link")
-        
         await update.message.reply_text(
             f"🎬 **Aapki Movie Mil Gayi Bhai!**\n\n"
             f"🍿 **Name:** {name}\n"
@@ -89,15 +80,14 @@ async def search_movie(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # --- MAIN RUNNER ---
 if __name__ == '__main__':
-    # Koyeb par environment variable se token uthayega
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "APNA_TELEGRAM_TOKEN_YAHAN_DALO")
+    # Token direct Render ke environment variable se aayega
+    BOT_TOKEN = os.environ.get("BOT_TOKEN")
     
     app = ApplicationBuilder().token(BOT_TOKEN).build()
-    
-    # Handlers link karo
     app.add_handler(CommandHandler('start', start))
     app.add_handler(CommandHandler('add', add_movie))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, search_movie))
     
     print("Bot is rocking and running...")
     app.run_polling()
+
